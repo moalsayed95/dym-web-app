@@ -11,14 +11,11 @@ export const Footer: React.FC = () => {
         { text: 'About Us', href: '/about' },
         { text: 'How It Works', href: '/how-it-works' },
         { text: 'Pricing', href: '/pricing' },
-        { text: 'For Professionals', href: '/professionals' }
       ]
     },
     {
       title: 'Support',
       links: [
-        { text: 'Help Center', href: '/help' },
-        { text: 'Contact Us', href: '/contact' },
         { text: 'Privacy Policy', href: '/privacy' },
         { text: 'Terms of Service', href: '/terms' }
       ]
@@ -26,9 +23,6 @@ export const Footer: React.FC = () => {
     {
       title: 'Crisis Resources',
       links: [
-        { text: 'Emergency: 911', href: 'tel:911' },
-        { text: 'Crisis Hotline', href: 'tel:1-800-273-8255' },
-        { text: 'Find Local Help', href: '/crisis-help' },
         { text: 'Safety Resources', href: '/safety' }
       ]
     }
