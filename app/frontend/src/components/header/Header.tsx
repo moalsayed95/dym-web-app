@@ -31,9 +31,6 @@ export const Header: React.FC = () => {
             <Link to="/product" className="text-gray-700 hover:text-blue-600 transition-colors">
               Product
             </Link>
-            <Link to="/professionals" className="text-gray-700 hover:text-blue-600 transition-colors">
-              Professionals
-            </Link>
             <Link to="/pricing" className="text-gray-700 hover:text-blue-600 transition-colors">
               Pricing
             </Link>
