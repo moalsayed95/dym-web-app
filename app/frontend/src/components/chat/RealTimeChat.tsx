@@ -5,6 +5,7 @@ import useAudioRecorder from "@/hooks/useAudioRecorder";
 import useAudioPlayer from "@/hooks/useAudioPlayer";
 import StatusMessage from "@/components/ui/status-message";
 import { Mic, MicOff } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function RealTimeChat() {
     const { t } = useTranslation();
@@ -53,25 +54,26 @@ export default function RealTimeChat() {
     };
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-            <div className="flex items-center justify-center gap-4">
-                <StatusMessage isRecording={isRecording} />
-                <button
-                    onClick={onToggleListening}
-                    className={`flex items-center justify-center w-14 h-14 rounded-full transition-colors ${
-                        isRecording 
-                            ? 'bg-red-500 hover:bg-red-600' 
-                            : 'bg-blue-500 hover:bg-blue-600'
-                    }`}
-                    aria-label={isRecording ? t("app.stopRecording") : t("app.startRecording")}
-                >
-                    {isRecording ? (
-                        <MicOff className="w-6 h-6 text-white" />
-                    ) : (
-                        <Mic className="w-6 h-6 text-white" />
-                    )}
-                </button>
-            </div>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-center justify-center space-y-4">
+            <StatusMessage isRecording={isRecording} />
+            <button
+                onClick={onToggleListening}
+                className={cn(
+                    "relative flex items-center justify-center w-24 h-24 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-300",
+                    isRecording 
+                        ? 'bg-red-500 hover:bg-red-600 shadow-lg' 
+                        : 'bg-blue-500 hover:bg-blue-600 shadow-lg'
+                )}
+                aria-label={isRecording ? t("app.stopRecording") : t("app.startRecording")}
+            >
+                <div className="absolute inset-1 rounded-full bg-white/10"></div>
+                
+                {isRecording ? (
+                    <MicOff className="relative w-10 h-10 text-white" />
+                ) : (
+                    <Mic className="relative w-10 h-10 text-white" />
+                )}
+            </button>
         </div>
     );
 } 
