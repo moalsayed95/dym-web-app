@@ -52,3 +52,7 @@ export type ExtensionMiddleTierToolResponse = {
     tool_name: string;
     tool_result: string; // JSON string that needs to be parsed into ToolResult
 };
+
+export type Message = {
+    type: string;
+};
