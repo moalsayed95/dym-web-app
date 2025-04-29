@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: ["class"],
@@ -77,6 +79,9 @@ export default {
                     lg: '1024px',
                     xl: '1280px',
                 },
+            },
+            fontFamily: {
+                sans: ['Inter', ...defaultTheme.fontFamily.sans],
             },
         }
     },

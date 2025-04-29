@@ -66,14 +66,11 @@ export default function RealTimeChat() {
                 )}
                 aria-label={isRecording ? t("app.stopRecording") : t("app.startRecording")}
             >
-                <div className="absolute inset-1 rounded-full bg-white/10"></div>
-                
-                {isRecording ? (
-                    <MicOff className="relative w-10 h-10 text-white" />
-                ) : (
-                    <Mic className="relative w-10 h-10 text-white" />
-                )}
             </button>
+             {/* Added a subtle instruction text below the button */}
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+                {isRecording ? t("app.tapToStopRecording") : t("app.tapToStartRecording")}
+            </p>
         </div>
     );
 } 
