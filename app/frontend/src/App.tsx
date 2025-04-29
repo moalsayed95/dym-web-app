@@ -71,10 +71,6 @@ function App() {
                 </div>
             </header>
 
-            {/* Main Content - Updated Layout */}
-            <main className="flex flex-grow flex-col">
-
-            </main>
         </div>
     );
 }
