@@ -3,7 +3,7 @@ import RealTimeChat from '../chat/RealTimeChat';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="py-24 overflow-hidden">
+    <section className="py-32 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -15,7 +15,7 @@ export const HeroSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-8xl mx-auto">
           <RealTimeChat />
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-500">

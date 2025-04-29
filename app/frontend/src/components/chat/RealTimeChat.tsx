@@ -54,23 +54,28 @@ export default function RealTimeChat() {
     };
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-center justify-center space-y-4">
-            <StatusMessage isRecording={isRecording} />
-            <button
-                onClick={onToggleListening}
-                className={cn(
-                    "relative flex items-center justify-center w-24 h-24 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-300",
-                    isRecording 
-                        ? 'bg-red-500 hover:bg-red-600 shadow-lg' 
-                        : 'bg-blue-500 hover:bg-blue-600 shadow-lg'
-                )}
-                aria-label={isRecording ? t("app.stopRecording") : t("app.startRecording")}
-            >
-            </button>
-             {/* Added a subtle instruction text below the button */}
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-                {isRecording ? t("app.tapToStopRecording") : t("app.tapToStartRecording")}
-            </p>
+        <div className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900 rounded-lg shadow-lg p-24 flex flex-col items-center justify-center space-y-6 min-h-[390px]">
+            {
+                !isRecording ? (
+                    <button 
+                        onClick={onToggleListening}
+                        className="bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm rounded-full px-10 py-5 text-xl font-medium text-gray-800 dark:text-gray-200 shadow-lg hover:bg-white/90 dark:hover:bg-gray-700/90 transition-all duration-300 focus:outline-none"
+                        aria-label={t("app.startConversation")}
+                    >
+                        {t("app.clickToStartConversation", "Click to start conversation")} 
+                    </button>
+                ) : (
+                    <button 
+                        onClick={onToggleListening} 
+                        className="focus:outline-none rounded-full group"
+                        aria-label={t("app.stopConversation")}
+                    >
+                        <div className="bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm rounded-full px-10 py-5 shadow-lg group-hover:bg-white/60 dark:group-hover:bg-gray-700/60 transition-colors">
+                            <StatusMessage isRecording={isRecording} />
+                        </div>
+                    </button>
+                )
+            }
         </div>
     );
 } 
