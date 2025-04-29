@@ -49,13 +49,35 @@ export default {
                     3: "hsl(var(--chart-3))",
                     4: "hsl(var(--chart-4))",
                     5: "hsl(var(--chart-5))"
-                }
+                },
+                'accent-1': 'var(--accent-1)',
+                'accent-2': 'var(--accent-2)',
             },
             fontSize: {
                 "7xl": ["4.5rem", { lineHeight: "1.3" }],
                 "4xl": ["2.5rem", { lineHeight: "3.2rem" }],
                 "3xl": ["2rem", { lineHeight: "2.8rem" }]
-            }
+            },
+            animation: {
+                'wave': 'wave 20s linear infinite',
+                'wave-slow': 'wave 25s linear infinite',
+            },
+            keyframes: {
+                wave: {
+                    '0%': { transform: 'translateX(0)' },
+                    '100%': { transform: 'translateX(-50%)' },
+                },
+            },
+            container: {
+                center: true,
+                padding: '1rem',
+                screens: {
+                    sm: '640px',
+                    md: '768px',
+                    lg: '1024px',
+                    xl: '1280px',
+                },
+            },
         }
     },
     plugins: [require("tailwindcss-animate")]
