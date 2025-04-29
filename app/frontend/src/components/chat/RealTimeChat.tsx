@@ -59,18 +59,20 @@ export default function RealTimeChat() {
                 !isRecording ? (
                     <button 
                         onClick={onToggleListening}
-                        className="bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm rounded-full px-10 py-5 text-xl font-medium text-gray-800 dark:text-gray-200 shadow-lg hover:bg-white/90 dark:hover:bg-gray-700/90 transition-all duration-300 focus:outline-none"
+                        className="focus:outline-none rounded-full"
                         aria-label={t("app.startConversation")}
                     >
-                        {t("app.clickToStartConversation", "Click to start conversation")} 
+                        <div className="bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm rounded-full px-10 py-5 shadow-lg hover:bg-white/90 dark:hover:bg-gray-700/90 transition-all duration-300 text-xl font-medium text-gray-800 dark:text-gray-200">
+                            {t("app.clickToStartConversation", "Click to start conversation")} 
+                        </div>
                     </button>
                 ) : (
                     <button 
                         onClick={onToggleListening} 
-                        className="focus:outline-none rounded-full group"
+                        className="focus:outline-none rounded-full"
                         aria-label={t("app.stopConversation")}
                     >
-                        <div className="bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm rounded-full px-10 py-5 shadow-lg group-hover:bg-white/60 dark:group-hover:bg-gray-700/60 transition-colors">
+                        <div className="bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm rounded-full px-10 py-5 shadow-lg hover:bg-white/90 dark:hover:bg-gray-700/90 transition-all duration-300 text-xl font-medium text-gray-800 dark:text-gray-200"> 
                             <StatusMessage isRecording={isRecording} />
                         </div>
                     </button>
