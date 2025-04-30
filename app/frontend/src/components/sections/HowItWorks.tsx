@@ -20,7 +20,7 @@ export const HowItWorks: React.FC = () => {
   ];
 
   return (
-    <section className="py-8 bg-gray-50">
+    <section className="-mt-16 pb-8 bg-gray-50">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
           How DYM Works

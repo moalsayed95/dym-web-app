@@ -112,3 +112,28 @@
         background-position: 0% 50%;
     }
 }
+
+/* Animated gradient background for RealTimeChat when recording */
+.animated-gradient-bg {
+    background: linear-gradient(270deg, #a1c4fd, #c2e9fb, #fbc2eb, #fcb69f, #a1c4fd);
+    background-size: 200% 200%;
+    animation: animatedGradientMove 6s ease-in-out infinite;
+}
+
+.dark .animated-gradient-bg {
+    background: linear-gradient(270deg, #434343, #262626, #6a11cb, #2575fc, #434343);
+    background-size: 200% 200%;
+    animation: animatedGradientMove 6s ease-in-out infinite;
+}
+
+@keyframes animatedGradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

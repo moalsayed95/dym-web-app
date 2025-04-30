@@ -4,8 +4,7 @@ import useRealTime from "@/hooks/useRealtime";
 import useAudioRecorder from "@/hooks/useAudioRecorder";
 import useAudioPlayer from "@/hooks/useAudioPlayer";
 import StatusMessage from "@/components/ui/status-message";
-import { Mic, MicOff } from "lucide-react";
-import { cn } from "@/lib/utils";
+
 
 export default function RealTimeChat() {
     const { t } = useTranslation();
@@ -54,7 +53,14 @@ export default function RealTimeChat() {
     };
 
     return (
-        <div className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900 rounded-lg shadow-lg p-24 flex flex-col items-center justify-center space-y-6 min-h-[390px]">
+        <div
+            className={
+                `rounded-lg shadow-lg p-24 flex flex-col items-center justify-center space-y-6 min-h-[390px] ` +
+                (isRecording
+                    ? 'animated-gradient-bg'
+                    : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900')
+            }
+        >
             {
                 !isRecording ? (
                     <button 
