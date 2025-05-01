@@ -7,11 +7,10 @@ export const HeroSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Your Journey to Better Mental Health Starts Here
+            Discover what is on your mind
           </h1>
           <p className="text-lg md:text-xl text-gray-600">
-            Experience personalized AI-guided therapy that adapts to your needs,
-            backed by mental health professionals.
+            Your safe space for self-discovery, with a path to professional support when you're ready.
           </p>
         </div>
 

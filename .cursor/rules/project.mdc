@@ -1,0 +1,42 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Project structure:
+DYM-WEB-APP/
+├── app/
+│   ├── backend/                # Python + FastAPI backend
+│   │   ├── data/              # Data storage
+│   │   ├── static/            # Static assets
+│   │   └── venv/              # Python virtual environment
+│   └── frontend/              # React + Vite + TypeScript frontend
+│       ├── public/            # Public assets
+│       └── src/
+│           ├── assets/        # Frontend assets
+│           ├── components/    # React components
+│           │   ├── audio/
+│           │   ├── chat/
+│           │   ├── footer/
+│           │   ├── header/
+│           │   ├── sections/
+│           │   └── ui/
+│           ├── hooks/         # Custom React hooks
+│           ├── i18n/         # Internationalization setup
+│           ├── lib/          # Utility libraries
+│           ├── locales/      # Translation files
+│           │   ├── en/
+│           │   ├── es/
+│           │   ├── fr/
+│           │   └── ja/
+│           └── pages/        # Page components
+├── infra/                   # Infrastructure configuration
+├── .gitignore
+├── get-keys.sh             # Script for managing API keys
+├── package-lock.json
+└── README.md
+
+# Quality Gates
+* **ESLint + Prettier** for JS/TS; **Ruff + Black** for Python.
+* TypeScript compiler runs with `strict: true`; Python is type-checked with **mypy**.
+

@@ -7,7 +7,7 @@ WORKDIR /app
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PORT=8000
+    PORT=8765
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -29,7 +29,7 @@ RUN chown -R appuser:appuser /app
 USER appuser
 
 # Expose the port
-EXPOSE 8000
+EXPOSE 8765
 
 # Run gunicorn with aiohttp worker
-CMD ["gunicorn", "app:create_app", "--bind", "0.0.0.0:8000", "--worker-class", "aiohttp.worker.GunicornWebWorker", "--workers", "4", "--timeout", "120"] 
+CMD ["gunicorn", "app:create_app", "--bind", "0.0.0.0:8765", "--worker-class", "aiohttp.worker.GunicornWebWorker", "--workers", "4", "--timeout", "120"] 

@@ -1,0 +1,28 @@
+---
+description: 
+globs: *.tsx,*.ts
+alwaysApply: false
+---
+summary: "Global front-end rules for React + Vite project."
+---
+# React
+* Functional components only.  Exported components ≤ 250 LOC.
+* Explicit `Props` interface/type for every component.
+
+# State
+* One **Zustand** store per feature in `app/frontend/src/features/<name>/<name>Store.ts`.
+* Provide `getInitialState()` for tests; persist with `zustand/middleware`.
+
+# Styling & UI
+* Tailwind CSS only; no inline `style` or separate `.css` files.
+* Use **shadcn/ui** primitives; compose classes with `tailwind-merge`.
+* Enforce Tailwind class order: layout → box → typography → colour → effect.
+
+# Routing & Data
+* Route comps reside in `app/frontend/src/pages/`; lazy-load with `React.lazy` + `Suspense`.
+* Only route comps fetch data; children are presentational.
+
+# A11y & Performance
+* Must pass **eslint-plugin-jsx-a11y**.
+
+* Virtualise lists > 100 items with `@tanstack/react-virtual`.

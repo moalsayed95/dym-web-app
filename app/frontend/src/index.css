@@ -115,15 +115,47 @@
 
 /* Animated gradient background for RealTimeChat when recording */
 .animated-gradient-bg {
-    background: linear-gradient(270deg, #a1c4fd, #c2e9fb, #fbc2eb, #fcb69f, #a1c4fd);
-    background-size: 200% 200%;
-    animation: animatedGradientMove 6s ease-in-out infinite;
+    background: linear-gradient(225deg, 
+        rgba(219, 234, 254, 0.9),  /* Softer blue */
+        rgba(237, 233, 254, 0.9),  /* Softer purple */
+        rgba(242, 234, 254, 0.9),  /* Light purple */
+        rgba(251, 237, 254, 0.9),  /* Very light pink */
+        rgba(237, 233, 254, 0.9),  /* Back to soft purple */
+        rgba(219, 234, 254, 0.9)   /* Back to soft blue */
+    );
+    background-size: 400% 400%;
+    animation: animatedGradientMove 15s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.animated-gradient-bg::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 30%, rgba(255,255,255,0.05) 80%);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .dark .animated-gradient-bg {
-    background: linear-gradient(270deg, #434343, #262626, #6a11cb, #2575fc, #434343);
-    background-size: 200% 200%;
-    animation: animatedGradientMove 6s ease-in-out infinite;
+    background: linear-gradient(225deg,
+        rgba(44, 62, 80, 0.85),    /* Softer dark blue */
+        rgba(74, 86, 157, 0.85),   /* Muted purple-blue */
+        rgba(43, 88, 118, 0.85),   /* Softer blue-gray */
+        rgba(50, 58, 88, 0.85),    /* Muted navy */
+        rgba(65, 41, 90, 0.85),    /* Softer purple */
+        rgba(47, 7, 67, 0.85)      /* Deeper purple */
+    );
+    background-size: 400% 400%;
+    animation: animatedGradientMove 15s ease infinite;
+}
+
+.dark .animated-gradient-bg::after {
+    background: radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 70%);
 }
 
 @keyframes animatedGradientMove {

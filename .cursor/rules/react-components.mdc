@@ -1,0 +1,22 @@
+---
+description: 
+globs: *.tsx,*.ts
+alwaysApply: false
+---
+summary: "Fine-grained component rules."
+---
+# Naming
+* File/dir: **kebab-case** (`chat-message.tsx`); component: **PascalCase**.
+* Event handlers prefixed with `handle`.
+
+# Props & Defaults
+* Boolean props start with `is` / `has`.
+* Provide defaults via destructuring, not `defaultProps`.
+
+# Tailwind
+* Use `clsx` or `tailwind-merge`; prefer `class:` variant over ternaries.
+
+# Tests
+* Each component exports `<ComponentName>.test.tsx` using **Vitest + React-Testing-Library**.
+
+* Include at least one a11y assertion (jest-dom).

@@ -1,0 +1,31 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+Global backend rules for Python + FastAPI
+---
+# Python Basics
+* Follow **PEP 8**.  Snake_case for vars & funcs, PascalCase for classes.
+* Mandatory type hints; no untyped `def` unless interacting with 3rd-party libs.
+* Limit module length ≤ 400 LOC; split if longer.
+
+# Formatting & Linting
+* **Black** (line-length 88) → auto-format; **Ruff** replaces Flake8/isort.
+* `ruff --fix` and `black` run in pre-commit.
+* Run **mypy** with `--strict`.
+
+# FastAPI Conventions
+* Use `async def` for I/O-bound handlers; keep CPU-bound work in `def` or background tasks.
+* Group endpoints with **APIRouter** per domain; routers live in `app/backend/api/{domain}.py`.
+* Request/response models via **Pydantic BaseModel**; define `Config.orm_mode = True` when returning ORM objects.
+* Error handling: raise `HTTPException(status_code=..., detail=...)`; log stack traces for 5xx.
+
+# Testing & Coverage
+* **pytest** with `pytest-asyncio`; tests in `tests/backend/`.
+* Use `httpx.AsyncClient` for integration tests.
+
+# Logging & Env
+* Use structured logging via **Loguru**.
+
+* Configuration from `.env`; inject with **pydantic-settings**.
