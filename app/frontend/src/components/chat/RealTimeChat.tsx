@@ -66,30 +66,33 @@ export default function RealTimeChat() {
                     : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900')
             }
         >
-            <VoiceSelector 
-                selectedVoice={selectedVoice}
-                onVoiceSelect={handleVoiceSelect}
-                isRecording={isRecording}
-            />
+            {/* Voice Selector with isolated background */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md flex flex-col justify-center">
+                <VoiceSelector 
+                    selectedVoice={selectedVoice}
+                    onVoiceSelect={handleVoiceSelect}
+                    isRecording={isRecording}
+                />
+            </div>
             
             <div className="flex items-center justify-center">
                 {!isRecording ? (
                     <button 
                         onClick={onToggleListening}
-                        className="focus:outline-none rounded-full"
+                        className="focus:outline-none rounded-full w-[300px]"
                         aria-label={t("app.startConversation")}
                     >
-                        <div className="bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm rounded-full px-10 py-5 shadow-lg hover:bg-white/90 dark:hover:bg-gray-700/90 transition-all duration-300 text-xl font-medium text-gray-800 dark:text-gray-200">
+                        <div className="bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm rounded-full px-10 py-5 shadow-lg hover:bg-white/90 dark:hover:bg-gray-700/90 transition-all duration-300 text-base font-medium text-gray-800 dark:text-gray-200">
                             {t("app.clickToStartConversation", "Click to start conversation")} 
                         </div>
                     </button>
                 ) : (
                     <button 
                         onClick={onToggleListening} 
-                        className="focus:outline-none rounded-full"
+                        className="focus:outline-none rounded-full w-[300px]"
                         aria-label={t("app.stopConversation")}
                     >
-                        <div className="bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm rounded-full px-10 py-5 shadow-lg hover:bg-white/90 dark:hover:bg-gray-700/90 transition-all duration-300 text-xl font-medium text-gray-800 dark:text-gray-200"> 
+                        <div className="bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm rounded-full px-10 py-5 shadow-lg hover:bg-white/90 dark:hover:bg-gray-700/90 transition-all duration-300 text-base font-medium text-gray-800 dark:text-gray-200"> 
                             <StatusMessage isRecording={isRecording} />
                         </div>
                     </button>
