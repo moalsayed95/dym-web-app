@@ -60,7 +60,7 @@ export default function RealTimeChat() {
     return (
         <div
             className={
-                `rounded-lg shadow-lg p-24 flex flex-row items-start justify-center space-x-6 min-h-[390px] ` +
+                `rounded-lg shadow-lg p-24 flex flex-row items-center justify-center space-x-6 min-h-[390px] ` +
                 (isRecording
                     ? 'animated-gradient-bg'
                     : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900')
