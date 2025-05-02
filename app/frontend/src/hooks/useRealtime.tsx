@@ -33,6 +33,10 @@ type Parameters = {
     onReceivedError?: (message: Message) => void;
 };
 
+interface StartSessionOptions {
+    voice?: string;
+}
+
 export default function useRealTime({
     useDirectAoaiApi,
     aoaiEndpointOverride,
@@ -63,7 +67,7 @@ export default function useRealTime({
         shouldReconnect: () => true
     });
 
-    const startSession = () => {
+    const startSession = (options?: StartSessionOptions) => {
         const command: SessionUpdateCommand = {
             type: "session.update",
             session: {
@@ -77,6 +81,10 @@ export default function useRealTime({
             command.session.input_audio_transcription = {
                 model: "whisper-1"
             };
+        }
+
+        if (options?.voice) {
+            command.session.voice = options.voice;
         }
 
         sendJsonMessage(command);

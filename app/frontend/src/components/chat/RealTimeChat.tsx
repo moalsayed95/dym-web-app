@@ -4,11 +4,12 @@ import useRealTime from "@/hooks/useRealtime";
 import useAudioRecorder from "@/hooks/useAudioRecorder";
 import useAudioPlayer from "@/hooks/useAudioPlayer";
 import StatusMessage from "@/components/ui/status-message";
-
+import { VoiceSelector } from './VoiceSelector';
 
 export default function RealTimeChat() {
     const { t } = useTranslation();
     const [isRecording, setIsRecording] = useState(false);
+    const [selectedVoice, setSelectedVoice] = useState('alloy');
 
     const { startSession, addUserAudio, inputAudioBufferClear } = useRealTime({
         onWebSocketOpen: () => console.log("WebSocket connection opened"),
@@ -40,7 +41,7 @@ export default function RealTimeChat() {
 
     const onToggleListening = async () => {
         if (!isRecording) {
-            startSession();
+            startSession({ voice: selectedVoice });
             await startAudioRecording();
             resetAudioPlayer();
             setIsRecording(true);
@@ -52,17 +53,27 @@ export default function RealTimeChat() {
         }
     };
 
+    const handleVoiceSelect = (voice: string) => {
+        setSelectedVoice(voice);
+    };
+
     return (
         <div
             className={
-                `rounded-lg shadow-lg p-24 flex flex-col items-center justify-center space-y-6 min-h-[390px] ` +
+                `rounded-lg shadow-lg p-24 flex flex-row items-start justify-center space-x-6 min-h-[390px] ` +
                 (isRecording
                     ? 'animated-gradient-bg'
                     : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900')
             }
         >
-            {
-                !isRecording ? (
+            <VoiceSelector 
+                selectedVoice={selectedVoice}
+                onVoiceSelect={handleVoiceSelect}
+                isRecording={isRecording}
+            />
+            
+            <div className="flex items-center justify-center">
+                {!isRecording ? (
                     <button 
                         onClick={onToggleListening}
                         className="focus:outline-none rounded-full"
@@ -82,8 +93,8 @@ export default function RealTimeChat() {
                             <StatusMessage isRecording={isRecording} />
                         </div>
                     </button>
-                )
-            }
+                )}
+            </div>
         </div>
     );
 } 

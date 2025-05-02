@@ -60,22 +60,18 @@ class RTMiddleTier:
     temperature: Optional[float] = None
     max_tokens: Optional[int] = None
     disable_audio: Optional[bool] = None
-    voice_choice: Optional[str] = None
     api_version: str = "2024-10-01-preview"
     _tools_pending = {}
     _token_provider = None
 
-    def __init__(self, endpoint: str, deployment: str, credentials: AzureKeyCredential | DefaultAzureCredential, voice_choice: Optional[str] = None):
+    def __init__(self, endpoint: str, deployment: str, credentials: AzureKeyCredential | DefaultAzureCredential):
         self.endpoint = endpoint
         self.deployment = deployment
-        self.voice_choice = voice_choice
-        if voice_choice is not None:
-            logger.info("Realtime voice choice set to %s", voice_choice)
         if isinstance(credentials, AzureKeyCredential):
             self.key = credentials.key
         else:
             self._token_provider = get_bearer_token_provider(credentials, "https://cognitiveservices.azure.com/.default")
-            self._token_provider() # Warm up during startup so we have a token cached when the first request arrives
+            self._token_provider() # Warm up
 
     async def _process_message_to_client(self, msg: str, client_ws: web.WebSocketResponse, server_ws: web.WebSocketResponse) -> Optional[str]:
         message = json.loads(msg.data)
@@ -84,11 +80,9 @@ class RTMiddleTier:
         if message is not None:
             match message["type"]:
                 case "session.created":
-                    
                     session = message["session"]
                     session["instructions"] = ""
                     session["tools"] = []
-                    session["voice"] = self.voice_choice
                     session["tool_choice"] = "none"
                     session["max_response_output_tokens"] = None
                     updated_message = json.dumps(message)
@@ -171,8 +165,15 @@ class RTMiddleTier:
                         session["max_response_output_tokens"] = self.max_tokens
                     if self.disable_audio is not None:
                         session["disable_audio"] = self.disable_audio
-                    if self.voice_choice is not None:
-                        session["voice"] = self.voice_choice
+                    
+                    # Use client-specified voice, default to 'alloy' if missing (shouldn't happen with current frontend)
+                    if "voice" not in session:
+                        session["voice"] = "alloy" 
+                        logger.warning("Client did not provide voice in session.update, defaulting to alloy.")
+                    else:
+                        # Log the voice being forwarded to Azure
+                        logger.info("Forwarding session.update with voice: %s", session["voice"])
+                    
                     session["tool_choice"] = "auto" if len(self.tools) > 0 else "none"
                     session["tools"] = [tool.schema for tool in self.tools.values()]
                     updated_message = json.dumps(message)
