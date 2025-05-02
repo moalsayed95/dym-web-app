@@ -60,13 +60,13 @@ export default function RealTimeChat() {
     return (
         <div
             className={
-                `rounded-lg shadow-lg p-16 flex flex-row items-center justify-center space-x-6 min-h-[280px] max-w-6xl mx-auto ` +
+                `rounded-lg shadow-lg p-8 flex flex-row items-center justify-between min-h-[180px] max-w-5xl mx-auto ` +
                 (isRecording
                     ? 'animated-gradient-bg'
                     : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900')
             }
         >
-            {/* Voice Selector with isolated background */}
+            {/* Voice Selector with isolated background, aligned left */}
             <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md flex flex-col justify-center">
                 <VoiceSelector 
                     selectedVoice={selectedVoice}
@@ -75,7 +75,8 @@ export default function RealTimeChat() {
                 />
             </div>
             
-            <div className="flex items-center justify-center">
+            {/* Centered button */}
+            <div className="flex-1 flex items-center justify-center">
                 {!isRecording ? (
                     <button 
                         onClick={onToggleListening}
