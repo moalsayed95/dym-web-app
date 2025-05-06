@@ -1,35 +1,23 @@
-# Use Python 3.11 slim image as base
+# Use Python 3.11 slim image
 FROM python:3.11-slim
 
 # Set working directory
 WORKDIR /app
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PORT=8765
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy requirements first for better cache usage
+# Copy requirements first to leverage Docker cache
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application
 COPY . .
 
-# Create a non-root user and switch to it
-RUN adduser --disabled-password --gecos '' appuser
-RUN chown -R appuser:appuser /app
-USER appuser
+# Copy the .env.docker file (will be created by deployment script)
+COPY .env.docker .env
 
-# Expose the port
+# Expose the port the app runs on
 EXPOSE 8765
 
-# Run gunicorn with aiohttp worker
-CMD ["gunicorn", "app:create_app", "--bind", "0.0.0.0:8765", "--worker-class", "aiohttp.worker.GunicornWebWorker", "--workers", "4", "--timeout", "120"] 
+# Command to run the application
+CMD ["gunicorn", "main:app", "--workers", "4", "--worker-class", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8765"] 
