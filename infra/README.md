@@ -38,9 +38,9 @@ az deployment sub create --location <region> --template-file main.bicep
 ```
 
 This creates:
-- Resource group: `rg-dym-dev`
-- Azure Container Registry: `dymacrdev44`
-- Azure OpenAI instance: `dym-aoai-dev33`
+- Resource group: `rg-dym-dev1`
+- Azure Container Registry: `dymacrdev55`
+- Azure OpenAI instance: `dym-aoai-dev55`
 
 ### 2. Build and Push Containers
 
@@ -97,5 +97,5 @@ After completing these steps, you'll have a working backend container app deploy
 ## Troubleshooting
 
 - If the backend health check fails, it might still be starting up. Wait a few minutes and try again.
-- Verify your container images in ACR: `az acr repository list --name dymacrdev44 --output table`
+- Verify your container images in ACR: `az acr repository list --name dymacrdev55 --output table`
 - Check Container App logs in the Azure Portal or via: `az containerapp logs show --name dym-backend --resource-group rg-dym-dev` 

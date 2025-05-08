@@ -5,7 +5,7 @@ param location string = 'swedencentral'
 
 // Create the resource group
 resource rg 'Microsoft.Resources/resourceGroups@2023-07-01' = {
-  name: 'rg-dym-dev'
+  name: 'rg-dym-dev2'
   location: location
   tags: {
     environment: 'development'
@@ -19,11 +19,11 @@ module openai 'deploy-aoai.bicep' = {
   name: 'openai-deployment'
   params: {
     location: location
-    aiserviceaccountname: 'dym-aoai-dev44'
-    customDomainName: 'dym-aoai-dev44'
+    aiserviceaccountname: 'dym-aoai-dev66'
+    customDomainName: 'dym-aoai-dev'
     modeldeploymentname: 'gpt-4o'
     model: 'gpt-4o'
-    capacity: 30
+    capacity: 10
     sku: 'S0'
   }
 }
@@ -34,7 +34,7 @@ module acr 'deploy-acr.bicep' = {
   name: 'acr-deployment'
   params: {
     location: location
-    acrName: 'dymacrdev44'
+    acrName: 'dymacrdev66'
     acrSku: 'Basic'
     adminUserEnabled: true
   }

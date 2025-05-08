@@ -1,7 +1,7 @@
 # Script to deploy Container Apps Environment
 
 # Configuration
-$ResourceGroupName = "rg-dym-dev" # Must match the resource group created in main.bicep
+$ResourceGroupName = "rg-dym-dev1" # Must match the resource group created in main.bicep
 
 # Ensure Azure CLI is logged in
 Write-Host "Checking Azure CLI login status..." -ForegroundColor Blue

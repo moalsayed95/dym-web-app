@@ -1,5 +1,5 @@
 # Configuration
-$ACR_NAME = "dymacrdev44"
+$ACR_NAME = "dymacrdev55"
 $ACR_LOGIN_SERVER = "$ACR_NAME.azurecr.io"
 $BACKEND_IMAGE_NAME = "dym-backend"
 $FRONTEND_IMAGE_NAME = "dym-frontend"

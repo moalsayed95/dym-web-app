@@ -7,7 +7,7 @@ export const HeroSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Discover what is on your mind
+            Discover your mind
           </h1>
           <p className="text-lg md:text-xl text-gray-600">
             Your safe space for self-discovery, with a path to professional support when you're ready.
