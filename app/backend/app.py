@@ -84,7 +84,11 @@ async def create_app():
     attach_rag_tools(rtmt, credentials=search_credential, search_manager=search_manager)
     rtmt.attach_to_app(app, "/realtime")
 
+    async def health_check(request):
+        return web.Response(text="OK", status=200)
+
     current_directory = Path(__file__).parent
+    app.add_routes([web.get('/health', health_check)])
     app.add_routes([web.get('/', lambda _: web.FileResponse(current_directory / 'static/index.html'))])
     app.router.add_static('/', path=current_directory / 'static', name='static')
     
